@@ -1,15 +1,16 @@
 package org.yatsiko.life.view;
 
-import org.yatsiko.life.Pair;
+import org.yatsiko.life.model.Cell;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 import java.util.List;
 
 public class Scene extends JFrame {
 
     private Dimension fieldDimension;
-    private List<Pair> pairList;
+    private List<Cell> cellList;
     private int topInset;
     private int leftInset;
 
@@ -27,16 +28,16 @@ public class Scene extends JFrame {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-        for (int i = 0; i < pairList.size(); i++) {
-            g.fillRect(pairList.get(i).getX() * fieldDimension.height + leftInset,
-                    pairList.get(i).getY() * fieldDimension.width + topInset,
+        for (int i = 0; i < cellList.size(); i++) {
+            g.fillRect(cellList.get(i).getX() * fieldDimension.height + leftInset,
+                    cellList.get(i).getY() * fieldDimension.width + topInset,
                     fieldDimension.width,
                     fieldDimension.height);
         }
     }
 
-    public void setPairList(List<Pair> pairList) {
-        this.pairList = pairList;
+    public void update(List<Cell> cellList) {
+        this.cellList = cellList;
         repaint();
     }
 }
